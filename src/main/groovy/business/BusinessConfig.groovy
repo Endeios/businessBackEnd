@@ -17,7 +17,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 @Configuration
-@EnableJpaRepositories(basePackages="business",entityManagerFactoryRef="entityManagerFactory")
+@EnableJpaRepositories(basePackages="business.api",entityManagerFactoryRef="entityManagerFactory")
 class BusinessConfig {
 	
 	private static Logger log = Logger.getLogger("Configuration");
@@ -52,7 +52,8 @@ class BusinessConfig {
 		emf.setPersistenceUnitName("business")
 	}
 	
-	@Bean
+	
+	@Bean(name="jpaTransactionManager")
 	public TransactionManager getJPATXM(){
 		def jpatxm = new JpaTransactionManager()
 		jpatxm.dataSource = getDS()

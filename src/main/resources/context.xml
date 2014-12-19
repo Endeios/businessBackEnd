@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd">
+	<jpa:repositories base-package="business.api" entity-manager-factory-ref="localContainerEntityManagerFactoryBean"/>
+	<context:property-placeholder location="classpath:business.properties" />
+	<context:annotation-config />
+	<bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource"
+		id="businessDS">
+		<property name="driverClass" value="org.h2.Driver"></property>
+		<property name="url" value="${db.url}"></property>
+		<property name="username" value="${db.username}"></property>
+		<property name="password" value="${db.password}"></property>
+	</bean>
+
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
+		id="jpaTransactionManager" name="transactionManager">
+		<property name="dataSource" ref="businessDS"></property>
+		<property name="entityManagerFactory" ref="localContainerEntityManagerFactoryBean"></property>
+	</bean>
+	<bean
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		id="localContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="businessDS"></property>
+		<property name="persistenceUnitName" value="business"></property>
+	</bean>
+	<bean class="business.impl.BusinessImpl" id="business"></bean>
+</beans>
