@@ -27,7 +27,7 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.2.0.RELEASE'
     compile "org.codehaus.gpars:gpars:1.2.1"
     compile 'org.slf4j:slf4j-api:1.7.7'
-    compile 'org.slf4j:slf4j-simple:1.7.7'
+//    compile 'org.slf4j:slf4j-simple:1.7.7'
     compile 'org.apache.commons:commons-lang3:3.3.2'
 	compile 'com.h2database:h2:1.4.183'
 	
