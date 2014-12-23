@@ -6,11 +6,10 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>business.domain.Customer</class>
 		<class>business.domain.Invoice</class>
-		<class>business.domain.InvoiceItem</class>
 		<class>business.domain.Item</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create-update" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.hbm2ddl.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
